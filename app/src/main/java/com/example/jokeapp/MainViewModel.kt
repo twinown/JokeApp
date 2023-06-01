@@ -7,7 +7,7 @@ import android.widget.EditText
 //активити умирает каждый раз
 //вмка умирает, если прям смахнуть приложение
 //смерть аппликашна = смерть вмки (и наоборот)
-class MainViewModel (private val model: Model<Any, Any>) {
+class MainViewModel (private val model: Model<Joke, Error>) {
 
     private var textCallback: TextCallback = TextCallback.Empty();
 
@@ -20,7 +20,7 @@ class MainViewModel (private val model: Model<Any, Any>) {
     }
 
     fun init(textCallback: TextCallback) {
-        // в он криайте просто сохраняеям активити во вмку (грубо говоря)
+        // в он криайте просто сохраняеям активити (колбэк) во вмку (грубо говоря)
         //(в он криайте активити) привязываем вмку к активити (активити подписывается на колбэки вмки)
         //
         this.textCallback = textCallback
@@ -28,14 +28,15 @@ class MainViewModel (private val model: Model<Any, Any>) {
         // типо того . что и в активити
         //анонимный объект держит ссылку на вмку (на родителя)
         //вмка подписывается на колбэки модели
-        model.init(object :ResultCallback<Any, Any>{
-            override fun provideSuccess(data: Any) {
+        //снчала всё было в Any !!!!!
+        model.init(object :ResultCallback<Joke, Error>{
+            override fun provideSuccess(data: Joke) {
                 //в текст-коллбэк отдаёшь текст здесь, типо сетишь
-                textCallback.provideText("success")
+                textCallback.provideText(data.toUi())
             }
 
-            override fun provideError(error: Any) {
-                textCallback.provideText("error")
+            override fun provideError(error: Error) {
+                textCallback.provideText(error.message())
             }
 
         })

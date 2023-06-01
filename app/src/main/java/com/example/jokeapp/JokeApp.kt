@@ -14,9 +14,8 @@ class JokeApp : Application() {
         //а сам будет лежать также в аппликашне
         //его прокинем дальше во вью-модель
         //у манадж ресурса и у аппликэшна будет один лайф-сайкл- будут умирать вместе
-        ManageResources.Base(this)
-        viewModel = MainViewModel(
-            FakeModel()
+
+        viewModel = MainViewModel(FakeModel(ManageResources.Base(this))
         )
     }
 }
