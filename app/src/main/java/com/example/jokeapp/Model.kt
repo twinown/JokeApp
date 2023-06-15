@@ -9,9 +9,12 @@ interface Model<S, E> {
 
 }
 
+//этот коллбэк отдаёт данные из модельки в вмку
+
 interface ResultCallback<S, E> {
     fun provideSuccess(data:S)
     fun provideError(error:E)
+
 }
 
 //теперь стало так

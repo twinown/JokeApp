@@ -39,6 +39,8 @@ class MainViewModel (private val model: Model<Joke, Error>) {
                 textCallback.provideText(error.message())
             }
 
+
+
         })
     }
 
@@ -51,6 +53,8 @@ class MainViewModel (private val model: Model<Joke, Error>) {
         model.clear()
     }
 }
+
+//этот коллбэк отдаёт данные из вмки в аткивити
 
 interface TextCallback {
     //передача в текст колбэк текста

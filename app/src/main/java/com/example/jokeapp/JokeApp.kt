@@ -1,6 +1,7 @@
 package com.example.jokeapp
 
 import android.app.Application
+import com.google.gson.Gson
 
 class JokeApp : Application() {
 
@@ -15,7 +16,7 @@ class JokeApp : Application() {
         //его прокинем дальше во вью-модель
         //у манадж ресурса и у аппликэшна будет один лайф-сайкл- будут умирать вместе
 
-        viewModel = MainViewModel(FakeModel(ManageResources.Base(this))
-        )
+        viewModel = MainViewModel(BaseModel(JokeService.Base(Gson()),ManageResources.Base(this)))
+
     }
 }
